@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Vianetz_AttachTermsAndConditions>
+            <version>0.1.0</version>
+        </Vianetz_AttachTermsAndConditions>
+    </modules>
+ <global>
+   <models>
+       <vianetzattachtermsandconditions>
+            <class>Vianetz_AttachTermsAndConditions_Model</class>
+       </vianetzattachtermsandconditions>
+       <sales>
+            <rewrite>
+            <order_invoice>Vianetz_AttachTermsAndConditions_Model_Order_Invoice</order_invoice>
+            <order>Vianetz_AttachTermsAndConditions_Model_Order</order>
+          </rewrite>
+        </sales>
+   </models>
+  </global>
+</config>

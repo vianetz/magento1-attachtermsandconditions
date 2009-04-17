@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+  <modules>
+    <Vianetz_AttachTermsAndConditions>
+      <codePool>local</codePool>
+      <active>true</active>
+    </Vianetz_AttachTermsAndConditions>
+  </modules>
+</config>
