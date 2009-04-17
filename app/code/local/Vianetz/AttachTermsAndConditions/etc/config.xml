@@ -12,7 +12,6 @@
        </vianetzattachtermsandconditions>
        <sales>
             <rewrite>
-            <order_invoice>Vianetz_AttachTermsAndConditions_Model_Order_Invoice</order_invoice>
             <order>Vianetz_AttachTermsAndConditions_Model_Order</order>
           </rewrite>
         </sales>

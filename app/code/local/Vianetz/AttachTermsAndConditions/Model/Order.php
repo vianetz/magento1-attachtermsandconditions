@@ -67,43 +67,36 @@ Mage_Sales_Model_Order
                     ->addStoreFilter(Mage::app()->getStore()->getId())
                     ->addFieldToFilter('is_active', 1);
 
-        foreach ( $agreements as $agreement ) {
-Mage::log($agreement);
+            foreach ( $agreements as $agreement ) {
+                $pdf = new Zend_Pdf();
+                $style = new Zend_Pdf_Style();
 
-$pdf = new Zend_Pdf();
-         $style = new Zend_Pdf_Style();
+                $font = Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_HELVETICA);
+                $style->setFont($font, 10);
 
-      $font = Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_HELVETICA);
-       $style->setFont($font, 10);
+                $page = $pdf->newPage(Zend_Pdf_Page::SIZE_A4);
+                $pdf->pages[] = $page;
+                $page->setFillColor(new Zend_Pdf_Color_GrayScale(0));
+                $page->setFont($font, 11);
+                $text = wordwrap($agreement->getContent(), 70, "\n", false);
+                $text = explode("\n", $text);
+                $y = 760;
+                foreach ($text as $row) {
+                    if ($y < 60) {
+                        $page = $pdf->newPage(Zend_Pdf_Page::SIZE_A4);
+                        $pdf->pages[] = $page;
+                        $page->setFont($font, 11);
 
+                        $y = 760;
+                    } 
+                    $page->drawText(trim(strip_tags(stripslashes($row))), 89, $y, 'UTF-8');
+                    $y-=15;
+                }
 
-Mage::log("TEST..");
-Mage::log($agreement->getName());
-
-$page = $pdf->newPage(Zend_Pdf_Page::SIZE_A4);
-$pdf->pages[] = $page;
-$page->setFillColor(new Zend_Pdf_Color_GrayScale(0));
-$page->setFont($font, 11);
-Mage::log("TEST...");
-$text = wordwrap($agreement->getContent(), 70, "\n", false);
-    $text = explode("\n", $text);
-$y = 760;
-    foreach ($text as $row) {
-        if ($y < 60) {
-            $page = $pdf->newPage(Zend_Pdf_Page::SIZE_A4);
-            $pdf->pages[] = $page;
-            $page->setFont($font, 11);
-
-            $y = 760;
-        } 
-        $page->drawText(trim(strip_tags(stripslashes($row))), 89, $y, 'UTF-8');
-        $y-=15;
-    }
-Mage::log("TEST....");
-            $mailTemplate->addAttachment($pdf,
+                $mailTemplate->addAttachment($pdf,
 Mage::helper('sales')->__($agreement->getName().'.pdf'));
+            }
         }
-    }
 
         foreach ($sendTo as $recipient) {
             $mailTemplate->setDesignConfig(array('area'=>'frontend', 'store'=>$this->getStoreId()))
