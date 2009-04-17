@@ -16,10 +16,10 @@
           </rewrite>
         </sales>
    </models>
-    <blocks> 
+   <blocks>
        <vianetzattachtermsandconditions>
-           <class>Vianetz_AttachTermsAndConditions_Block</class> 
+            <class>Vianetz_AttachTermsAndConditions_Block</class>
        </vianetzattachtermsandconditions>
-    </blocks> 
+   </blocks>
   </global>
 </config>
