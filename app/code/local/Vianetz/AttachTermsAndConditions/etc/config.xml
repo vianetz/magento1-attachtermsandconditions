@@ -15,6 +15,11 @@
             <order>Vianetz_AttachTermsAndConditions_Model_Order</order>
           </rewrite>
         </sales>
+        <core>
+          <rewrite>
+            <email_template>Vianetz_AttachTermsAndConditions_Model_Email_Template</email_template>
+          </rewrite>
+        </core>
    </models>
     <blocks> 
        <vianetzattachtermsandconditions>
