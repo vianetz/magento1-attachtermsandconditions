@@ -7,7 +7,7 @@ class Vianetz_AttachTermsAndConditions_Block_View extends Mage_Core_Block_Templa
                     ->addFieldToFilter('is_active', 1)
                     ->addFieldToFilter('name', $this->getBlockId());
 
-            $html = ""
+            $html = "";
 
             foreach ( $agreements as $agreement ) {
                 $html .= $agreement->getContent();
