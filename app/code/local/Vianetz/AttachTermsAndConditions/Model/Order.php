@@ -62,15 +62,18 @@ Mage_Sales_Model_Order
             }
         }
 
+try {
         if (Mage::getStoreConfigFlag('checkout/options/enable_agreements')) {
                 $agreements = Mage::getModel('checkout/agreement')->getCollection()
                     ->addStoreFilter(Mage::app()->getStore()->getId())
                     ->addFieldToFilter('is_active', 1);
+//require_once('/srv/www/htdocs/html2text.php');
+error_reporting(0);
 
             foreach ( $agreements as $agreement ) {
                 $pdf = new Zend_Pdf();
                 $style = new Zend_Pdf_Style();
-
+/*
                 $font = Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_HELVETICA);
                 $style->setFont($font, 10);
 
@@ -78,7 +81,14 @@ Mage_Sales_Model_Order
                 $pdf->pages[] = $page;
                 $page->setFillColor(new Zend_Pdf_Color_GrayScale(0));
                 $page->setFont($font, 11);
-                $text = wordwrap($agreement->getContent(), 70, "\n", false);
+*/
+$interp = new Vianetz_AttachTermsAndConditions_Model_Html2Text();
+$text = $interp->html2pdf($pdf, $page, $style, utf8_encode($agreement->getContent()));
+
+#Mage::log($agreement->getContent());
+Mage::log($text);
+
+#               $text = wordwrap($agreement->getContent(), 100, "\n", false);
                 $text = explode("\n", $text);
                 $y = 760;
                 foreach ($text as $row) {
@@ -97,6 +107,10 @@ Mage_Sales_Model_Order
 Mage::helper('sales')->__($agreement->getName().'.pdf'));
             }
         }
+}
+catch ( Exception $ex ) {
+Mage::log("ERROR in AttachTermsAndConditions: ".$ex);
+}
 
         foreach ($sendTo as $recipient) {
             $mailTemplate->setDesignConfig(array('area'=>'frontend', 'store'=>$this->getStoreId()))
@@ -118,5 +132,3 @@ Mage::helper('sales')->__($agreement->getName().'.pdf'));
         return $this;
     }
 }
-
-/* vim: set ts=4 sw=4 expandtab nu tw=90: */
