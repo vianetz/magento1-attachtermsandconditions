@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Vianetz_AttachTermsAndConditions>
-            <version>0.1.0</version>
+            <version>0.1.5</version>
         </Vianetz_AttachTermsAndConditions>
     </modules>
  <global>

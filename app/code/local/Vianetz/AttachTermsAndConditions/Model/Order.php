@@ -62,55 +62,19 @@ Mage_Sales_Model_Order
             }
         }
 
-try {
         if (Mage::getStoreConfigFlag('checkout/options/enable_agreements')) {
                 $agreements = Mage::getModel('checkout/agreement')->getCollection()
                     ->addStoreFilter(Mage::app()->getStore()->getId())
                     ->addFieldToFilter('is_active', 1);
-//require_once('/srv/www/htdocs/html2text.php');
-error_reporting(0);
 
             foreach ( $agreements as $agreement ) {
-                $pdf = new Zend_Pdf();
-                $style = new Zend_Pdf_Style();
-/*
-                $font = Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_HELVETICA);
-                $style->setFont($font, 10);
-
-                $page = $pdf->newPage(Zend_Pdf_Page::SIZE_A4);
-                $pdf->pages[] = $page;
-                $page->setFillColor(new Zend_Pdf_Color_GrayScale(0));
-                $page->setFont($font, 11);
-*/
-$interp = new Vianetz_AttachTermsAndConditions_Model_Html2Text();
-$text = $interp->html2pdf($pdf, $page, $style, utf8_encode($agreement->getContent()));
-
-#Mage::log($agreement->getContent());
-Mage::log($text);
-
-#               $text = wordwrap($agreement->getContent(), 100, "\n", false);
-                $text = explode("\n", $text);
-                $y = 760;
-                foreach ($text as $row) {
-                    if ($y < 60) {
-                        $page = $pdf->newPage(Zend_Pdf_Page::SIZE_A4);
-                        $pdf->pages[] = $page;
-                        $page->setFont($font, 11);
-
-                        $y = 760;
-                    } 
-                    $page->drawText(trim(strip_tags(stripslashes($row))), 89, $y, 'UTF-8');
-                    $y-=15;
-                }
-
-                $mailTemplate->addAttachment($pdf,
-Mage::helper('sales')->__($agreement->getName().'.pdf'));
+		$baseDir = Mage::getBaseDir('media');
+		$file = $baseDir . '/' . $agreement->getName() . '.pdf';
+		if ( file_exists($file)) {
+                	$mailTemplate->addAttachment(file_get_contents($file), Mage::helper('sales')->__($agreement->getName()).'.pdf');
+		}
             }
         }
-}
-catch ( Exception $ex ) {
-Mage::log("ERROR in AttachTermsAndConditions: ".$ex);
-}
 
         foreach ($sendTo as $recipient) {
             $mailTemplate->setDesignConfig(array('area'=>'frontend', 'store'=>$this->getStoreId()))

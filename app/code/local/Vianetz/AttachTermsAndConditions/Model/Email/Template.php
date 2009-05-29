@@ -11,14 +11,15 @@ class Vianetz_AttachTermsAndConditions_Model_Email_Template extends Mage_Core_Mo
     /**
      * Add attachment to email
      *
-     * @param Zend_Pdf $pdf
+     * @param string $file
      * @param string $filename
      */
-    public function addAttachment(Zend_Pdf $pdf, $filename){
-        $file = $pdf->render();
+    public function addAttachment($file, $filename){
         $attachment = $this->getMail()->createAttachment($file);
         $attachment->type = 'application/pdf';
         $attachment->filename = $filename;
+        $attachment->disposition = Zend_Mime::DISPOSITION_ATTACHMENT;
+        $attachment->encoding = Zend_Mime::ENCODING_BASE64;
     } 
 }
 
