@@ -6,8 +6,7 @@
  * @package AttachTermsAndConditions
  * @author Christoph Massmann <C.Massmann@vianetz.com>
  */
-class Vianetz_AttachTermsAndConditions_Model_Order extends
-Mage_Sales_Model_Order
+class Vianetz_AttachTermsAndConditions_Model_Order extends Mage_Sales_Model_Order
 {
     /**
      * Sending email with order data

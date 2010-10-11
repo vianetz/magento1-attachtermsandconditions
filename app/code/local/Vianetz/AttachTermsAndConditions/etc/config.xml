@@ -11,7 +11,7 @@
             <class>Vianetz_AttachTermsAndConditions_Model</class>
        </vianetzattachtermsandconditions>
        <sales>
-            <rewrite>
+          <rewrite>
             <order>Vianetz_AttachTermsAndConditions_Model_Order</order>
           </rewrite>
         </sales>
