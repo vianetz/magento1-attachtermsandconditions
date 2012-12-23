@@ -22,5 +22,3 @@ class Vianetz_AttachTermsAndConditions_Model_Email_Template extends Mage_Core_Mo
         $attachment->encoding = Zend_Mime::ENCODING_BASE64;
     } 
 }
-
-/* vim: set ts=4 sw=4 expandtab nu tw=90: */

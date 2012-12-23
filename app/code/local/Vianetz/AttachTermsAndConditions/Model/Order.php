@@ -1,7 +1,7 @@
 <?php
 /**
  * AttachTermsAndConditions Invoice Class
- * 
+ *
  * @category Vianetz
  * @package AttachTermsAndConditions
  * @author Christoph Massmann <C.Massmann@vianetz.com>
@@ -62,33 +62,36 @@ class Vianetz_AttachTermsAndConditions_Model_Order extends Mage_Sales_Model_Orde
         }
 
         if (Mage::getStoreConfigFlag('checkout/options/enable_agreements')) {
-                $agreements = Mage::getModel('checkout/agreement')->getCollection()
-                    ->addStoreFilter(Mage::app()->getStore()->getId())
-                    ->addFieldToFilter('is_active', 1);
+            $agreements = Mage::getModel('checkout/agreement')->getCollection()
+                ->addStoreFilter(Mage::app()->getStore()->getId())
+                ->addFieldToFilter('is_active', 1);
 
             foreach ( $agreements as $agreement ) {
-		$baseDir = Mage::getBaseDir('media');
-		$file = $baseDir . '/' . $agreement->getName() . '.pdf';
-		if ( file_exists($file)) {
-                	$mailTemplate->addAttachment(file_get_contents($file), Mage::helper('sales')->__($agreement->getName()).'.pdf');
-		}
+                $baseDir = Mage::getBaseDir('media');
+                $file = $baseDir . '/' . $agreement->getName() . '.pdf';
+                if ( file_exists($file)) {
+                    $mailTemplate->addAttachment(file_get_contents($file), Mage::helper('sales')->__($agreement->getName()).'.pdf');
+                }
             }
         }
 
         foreach ($sendTo as $recipient) {
             $mailTemplate->setDesignConfig(array('area'=>'frontend', 'store'=>$this->getStoreId()))
                 ->sendTransactional(
-                    $template,
-                    Mage::getStoreConfig(self::XML_PATH_EMAIL_IDENTITY, $this->getStoreId()),
-                    $recipient['email'],
-                    $recipient['name'],
-                    array(
-                        'order'         => $this,
-                        'billing'       => $this->getBillingAddress(),
-                        'payment_html'  => $paymentBlock->toHtml(),
-                    )
-                );
+                $template,
+                Mage::getStoreConfig(self::XML_PATH_EMAIL_IDENTITY, $this->getStoreId()),
+                $recipient['email'],
+                $recipient['name'],
+                array(
+                     'order'         => $this,
+                     'billing'       => $this->getBillingAddress(),
+                     'payment_html'  => $paymentBlock->toHtml(),
+                )
+            );
         }
+
+        $this->setEmailSent(true);
+        $this->_getResource()->saveAttribute($this, 'email_sent');
 
         $translate->setTranslateInline(true);
 
