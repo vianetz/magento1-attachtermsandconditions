@@ -5,26 +5,27 @@
             <version>0.1.5</version>
         </Vianetz_AttachTermsAndConditions>
     </modules>
- <global>
-   <models>
-       <vianetzattachtermsandconditions>
-            <class>Vianetz_AttachTermsAndConditions_Model</class>
-       </vianetzattachtermsandconditions>
-       <sales>
-          <rewrite>
-            <order>Vianetz_AttachTermsAndConditions_Model_Order</order>
-          </rewrite>
-        </sales>
-        <core>
-          <rewrite>
-            <email_template>Vianetz_AttachTermsAndConditions_Model_Email_Template</email_template>
-          </rewrite>
-        </core>
-   </models>
-    <blocks> 
-       <vianetzattachtermsandconditions>
-           <class>Vianetz_AttachTermsAndConditions_Block</class> 
-       </vianetzattachtermsandconditions>
-    </blocks> 
-  </global>
+
+    <global>
+        <models>
+            <vianetzattachtermsandconditions>
+                <class>Vianetz_AttachTermsAndConditions_Model</class>
+            </vianetzattachtermsandconditions>
+            <sales>
+                <rewrite>
+                    <order>Vianetz_AttachTermsAndConditions_Model_Order</order>
+                </rewrite>
+            </sales>
+            <core>
+                <rewrite>
+                    <email_template>Vianetz_AttachTermsAndConditions_Model_Email_Template</email_template>
+                </rewrite>
+            </core>
+        </models>
+        <blocks>
+            <vianetzattachtermsandconditions>
+                <class>Vianetz_AttachTermsAndConditions_Block</class>
+            </vianetzattachtermsandconditions>
+        </blocks>
+    </global>
 </config>
