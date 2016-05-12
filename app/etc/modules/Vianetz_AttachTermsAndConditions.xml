@@ -2,8 +2,11 @@
 <config>
     <modules>
         <Vianetz_AttachTermsAndConditions>
-            <codePool>local</codePool>
             <active>true</active>
+            <codePool>community</codePool>
+            <depends>
+                <Vianetz_PdfAttachments />
+            </depends>
         </Vianetz_AttachTermsAndConditions>
     </modules>
 </config>

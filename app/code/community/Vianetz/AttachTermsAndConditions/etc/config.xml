@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Vianetz_AttachTermsAndConditions>
+            <version>2.0.0</version>
+        </Vianetz_AttachTermsAndConditions>
+    </modules>
+
+    <global>
+        <models>
+            <vianetz_attachtermsandconditions>
+                <class>Vianetz_AttachTermsAndConditions_Model</class>
+            </vianetz_attachtermsandconditions>
+        </models>
+
+        <events>
+            <vianetz_pdfattachments_email_send_after>
+                <observers>
+                    <vianetz_attachtermsandconditions_add_pdf_attachment>
+                        <class>attachtermsandconditions/observer</class>
+                        <method>addPdfAttachment</method>
+                    </vianetz_attachtermsandconditions_add_pdf_attachment>
+                </observers>
+            </vianetz_pdfattachments_email_send_after>
+        </events>
+    </global>
+</config>
