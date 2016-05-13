@@ -17,7 +17,7 @@
             <vianetz_pdfattachments_email_send_after>
                 <observers>
                     <vianetz_attachtermsandconditions_add_pdf_attachment>
-                        <class>attachtermsandconditions/observer</class>
+                        <class>vianetz_attachtermsandconditions/observer</class>
                         <method>addPdfAttachment</method>
                     </vianetz_attachtermsandconditions_add_pdf_attachment>
                 </observers>
