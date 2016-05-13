@@ -34,6 +34,14 @@ class Vianetz_AttachTermsAndConditions_Model_Observer
             return $this;
         }
 
+        /** @var Mage_Core_Model_Email_Template_Mailer $mailer */
+        $mailer = $observer->getEvent()->getMailer();
+
+        $orderEmailTemplate = Mage::getStoreConfig(Mage_Sales_Model_Order::XML_PATH_EMAIL_TEMPLATE, $mailer->getStoreId());
+        if ($mailer->getTemplateId() != $orderEmailTemplate) {
+            return $this;
+        }
+
         /** @var Mage_Core_Model_Email_Template $emailTemplate */
         $emailTemplate = $observer->getEvent()->getEmailTemplate();
 

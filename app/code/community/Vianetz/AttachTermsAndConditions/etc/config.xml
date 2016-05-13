@@ -14,14 +14,14 @@
         </models>
 
         <events>
-            <vianetz_pdfattachments_email_send_after>
+            <vianetz_pdfattachments_email_template_init>
                 <observers>
                     <vianetz_attachtermsandconditions_add_pdf_attachment>
                         <class>vianetz_attachtermsandconditions/observer</class>
                         <method>addPdfAttachment</method>
                     </vianetz_attachtermsandconditions_add_pdf_attachment>
                 </observers>
-            </vianetz_pdfattachments_email_send_after>
+            </vianetz_pdfattachments_email_template_init>
         </events>
     </global>
 </config>
