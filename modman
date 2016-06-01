@@ -1,2 +1,2 @@
-app/etc/modules/Vianetz_AttachTermsAndConditions.xml    app/etc/modules/Vianetz_AttachTermsAndConditions.xml
-app/code/community/Vianetz/AttachTermsAndConditions     app/code/community/Vianetz/AttachTermsAndConditions
+src/app/etc/modules/Vianetz_AttachTermsAndConditions.xml    app/etc/modules/Vianetz_AttachTermsAndConditions.xml
+src/app/code/community/Vianetz/AttachTermsAndConditions     app/code/community/Vianetz/AttachTermsAndConditions
