@@ -30,10 +30,6 @@ class Vianetz_AttachTermsAndConditions_Model_Observer
      */
     public function addPdfAttachment(Varien_Event_Observer $observer)
     {
-        if (Mage::getStoreConfigFlag('checkout/options/enable_agreements') === false) {
-            return $this;
-        }
-
         /** @var Mage_Core_Model_Email_Template_Mailer $mailer */
         $mailer = $observer->getEvent()->getMailer();
 
