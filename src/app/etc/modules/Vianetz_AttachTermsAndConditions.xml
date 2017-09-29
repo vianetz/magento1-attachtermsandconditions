@@ -5,6 +5,7 @@
             <active>true</active>
             <codePool>community</codePool>
             <depends>
+                <Vianetz_Core />
                 <Vianetz_PdfAttachments />
             </depends>
         </Vianetz_AttachTermsAndConditions>
