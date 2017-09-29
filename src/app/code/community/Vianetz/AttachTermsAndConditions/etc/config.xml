@@ -13,6 +13,12 @@
             </vianetz_attachtermsandconditions>
         </models>
 
+        <helpers>
+            <attachtermsandconditions>
+                <class>Vianetz_AttachTermsAndConditions_Helper</class>
+            </attachtermsandconditions>
+        </helpers>
+
         <events>
             <vianetz_pdfattachments_email_template_init>
                 <observers>
