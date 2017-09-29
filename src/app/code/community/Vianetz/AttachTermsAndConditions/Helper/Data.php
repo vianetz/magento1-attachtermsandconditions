@@ -12,10 +12,10 @@
  * to license@vianetz.com so we can send you a copy immediately.
  *
  * @category    Vianetz
- * @package     Vianetz_AttachTermsAndConditions
+ * @package     Vianetz\AttachTermsAndConditions
  * @author      Christoph Massmann, <C.Massmann@vianetz.com>
  * @link        http://www.vianetz.com
- * @copyright   Copyright (c) 2006-17 vianetz - C. Massmann (http://www.vianetz.com)
+ * @copyright   Copyright (c) since 2006 vianetz - Dipl.-Ing. C. Massmann (http://www.vianetz.com)
  * @license     http://www.vianetz.com/license Commercial Software License
  * @version     %%MODULE_VERSION%%
  */
