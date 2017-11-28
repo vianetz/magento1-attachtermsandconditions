@@ -36,14 +36,17 @@ class Vianetz_AttachTermsAndConditions_Model_Observer
             /** @var Mage_Core_Model_Email_Template_Mailer $mailer */
             $mailer = $observer->getEvent()->getMailer();
 
-            $orderEmailTemplate = Mage::getStoreConfig(Mage_Sales_Model_Order::XML_PATH_EMAIL_TEMPLATE, $mailer->getStoreId());
-            if ($mailer->getTemplateId() != $orderEmailTemplate) {
+            $orderEmailTemplateId = Mage::getStoreConfig(Mage_Sales_Model_Order::XML_PATH_EMAIL_TEMPLATE, $mailer->getStoreId());
+            $orderEmailGuestTemplateId = Mage::getStoreConfig(Mage_Sales_Model_Order::XML_PATH_EMAIL_GUEST_TEMPLATE, $mailer->getStoreId());
+
+            if ($mailer->getTemplateId() != $orderEmailTemplateId && $mailer->getTemplateId() != $orderEmailGuestTemplateId) {
                 return $this;
             }
 
             /** @var Mage_Core_Model_Email_Template $emailTemplate */
             $emailTemplate = $observer->getEvent()->getEmailTemplate();
 
+            $this->getHelper()->log('Looking for all agreements in store ' . $this->getStoreId());
             $agreements = Mage::getModel('checkout/agreement')->getCollection()->addStoreFilter($this->getStoreId())->addFieldToFilter('is_active', 1);
 
             if (count($agreements) === 0) {
@@ -56,7 +59,8 @@ class Vianetz_AttachTermsAndConditions_Model_Observer
                 $this->getHelper()->log('Searching for attachment file ' . $file);
 
                 if (file_exists($file) === true) {
-                    $this->getHelper()->log('Attaching ' . $file . ' to order email for order #' . $this->getOrder()->getIncrementId() . '.');
+                    $orderId = (empty($this->getOrder()) === false) ? $this->getOrder()->getIncrementId() : '';
+                    $this->getHelper()->log('Attaching ' . $file . ' to order email for order #' . $orderId . '.');
 
                     $filename = Mage::helper('sales')->__($agreement->getName()) . '.pdf';
                     Mage::helper('pdfattachments')->addAttachmentToEmail($emailTemplate, file_get_contents($file), $filename);
