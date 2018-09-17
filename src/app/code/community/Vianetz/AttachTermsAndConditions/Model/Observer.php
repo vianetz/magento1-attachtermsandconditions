@@ -4,8 +4,7 @@
  *
  * @section LICENSE
  * This file is created by vianetz <info@vianetz.com>.
- * The Magento module is distributed under a commercial license.
- * Any redistribution, copy or direct modification is explicitly not allowed.
+ * The code is distributed under the GPL license.
  *
  * If you did not receive a copy of the license and are unable to
  * obtain it through the world-wide-web, please send an email
@@ -14,10 +13,9 @@
  * @category    Vianetz
  * @package     Vianetz\AttachTermsAndConditions
  * @author      Christoph Massmann, <C.Massmann@vianetz.com>
- * @link        http://www.vianetz.com
- * @copyright   Copyright (c) since 2006 vianetz - Dipl.-Ing. C. Massmann (http://www.vianetz.com)
- * @license     http://www.vianetz.com/license Commercial Software License
- * @version     %%MODULE_VERSION%%
+ * @link        https://www.vianetz.com
+ * @copyright   Copyright (c) since 2006 vianetz - Dipl.-Ing. C. Massmann (https://www.vianetz.com)
+ * @license     http://www.gnu.org/licenses/gpl-3.0.txt GNU GENERAL PUBLIC LICENSE
  */
 class Vianetz_AttachTermsAndConditions_Model_Observer
 {
