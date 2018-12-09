@@ -30,4 +30,12 @@
             </vianetz_pdfattachments_email_template_init>
         </events>
     </global>
+
+    <default>
+        <vianetz_attachtermsandconditions>
+            <general>
+                <filter_active_agreements>false</filter_active_agreements>
+            </general>
+        </vianetz_attachtermsandconditions>
+    </default>
 </config>

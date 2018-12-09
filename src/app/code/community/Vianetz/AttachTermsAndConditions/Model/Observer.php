@@ -44,20 +44,12 @@ class Vianetz_AttachTermsAndConditions_Model_Observer
             /** @var Mage_Core_Model_Email_Template $emailTemplate */
             $emailTemplate = $observer->getEvent()->getEmailTemplate();
 
-            $this->getHelper()->log('Looking for all agreements in store ' . $this->getStoreId());
-            $agreements = Mage::getModel('checkout/agreement')->getCollection()->addStoreFilter($this->getStoreId())->addFieldToFilter('is_active', 1);
-
-            if (count($agreements) === 0) {
-                $this->getHelper()->log('No active agreements found for store ' . $this->getStoreId() . '.');
-                return $this;
-            }
-
-            foreach ($agreements as $agreement) {
+            foreach ($this->getAgreements() as $agreement) {
                 $file = Mage::getBaseDir('media') . DS . $agreement->getName() . '.pdf';
                 $this->getHelper()->log('Searching for attachment file ' . $file);
 
                 if (file_exists($file) === true) {
-                    $orderId = (empty($this->getOrder()) === false) ? $this->getOrder()->getIncrementId() : '';
+                    $orderId = ($this->getOrder() !== null) ? $this->getOrder()->getIncrementId() : '';
                     $this->getHelper()->log('Attaching ' . $file . ' to order email for order #' . $orderId . '.');
 
                     $filename = Mage::helper('sales')->__($agreement->getName()) . '.pdf';
@@ -72,14 +64,14 @@ class Vianetz_AttachTermsAndConditions_Model_Observer
     }
 
     /**
-     * @return integer
+     * @return int
+     * @throws \Mage_Core_Model_Store_Exception
      */
     private function getStoreId()
     {
         $storeId = (int)Mage::app()->getStore()->getId();
-        $order = $this->getOrder();
 
-        if ($storeId === Mage_Core_Model_App::ADMIN_STORE_ID && empty($order) === false) {
+        if ($storeId === Mage_Core_Model_App::ADMIN_STORE_ID && $this->getOrder() !== null) {
             $storeId = $this->getOrder()->getStoreId();
         }
 
@@ -87,7 +79,7 @@ class Vianetz_AttachTermsAndConditions_Model_Observer
     }
 
     /**
-     * @return Mage_Sales_Model_Order
+     * @return Mage_Sales_Model_Order|null
      */
     private function getOrder()
     {
@@ -100,5 +92,27 @@ class Vianetz_AttachTermsAndConditions_Model_Observer
     private function getHelper()
     {
         return Mage::helper('attachtermsandconditions');
+    }
+
+    /**
+     * @return \Mage_Checkout_Model_Resource_Agreement_Collection
+     * @throws \Mage_Core_Model_Store_Exception
+     */
+    private function getAgreements()
+    {
+        $this->getHelper()->log('Looking for all agreements in store ' . $this->getStoreId());
+        $agreements = Mage::getModel('checkout/agreement')->getCollection()
+            ->addStoreFilter($this->getStoreId());
+
+        $isFilterActiveAgreements = Mage::getStoreConfigFlag('vianetz_attachtermsandconditions', $this->getStoreId());
+        if ($isFilterActiveAgreements === true) {
+            $agreements->addFieldToFilter('is_active', 1);
+        }
+
+        if (count($agreements) === 0) {
+            $this->getHelper()->log('No active agreements found for store ' . $this->getStoreId() . '.');
+        }
+
+        return $agreements;
     }
 }

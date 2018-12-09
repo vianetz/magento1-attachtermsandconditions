@@ -15,10 +15,20 @@ Requirements
 - PHP >= 5.2.0
 - Mage_Core
 - Vianetz_Core
+- [Vianetz_PdfAttachments](https://github.com/vianetz/magento1-pdfattachments)
 
 Compatibility
 -------------
 - Magento >= 1.7
+
+Usage
+-----
+This extension loops through all agreements that have been created in Magento Admin Sales > Terms and Conditions and checks
+if a PDF file exists in the _media/_ folder of the Magento directory with exactly the name of the agreement.
+In that case this file is attached to the sales order email.
+
+For example if the agreement in the backend has the name "AGB" then the extension looks for the file _media/AGB.pdf_
+and if this file exists it is attached to the sales order transactional email.
 
 Installation Instructions
 -------------------------
