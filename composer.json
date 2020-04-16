@@ -1,0 +1,30 @@
+{
+  "name": "vianetz/magento1-attachtermsandconditions",
+  "description": "A Magento 1 extension to attach PDF documents to emails.",
+  "type": "magento-module",
+  "keywords": [
+    "vianetz",
+    "magento",
+    "pdf"
+  ],
+  "license": "GPL-3.0-or-later",
+  "authors": [
+    {
+      "name": "Christoph Massmann",
+      "email": "cm@vianetz.com",
+      "homepage": "https://www.vianetz.com",
+      "role": "Developer"
+    }
+  ],
+  "support": {
+    "email": "support@vianetz.com",
+    "faq": "https://www.vianetz.com/en/magento-faq"
+  },
+  "require": {
+    "vianetz/magento1-pdfattachments": "^1.0"
+  },
+  "require-dev": {
+    "roave/security-advisories": "dev-master",
+    "vianetz/coding-standards": "dev-master"
+  }
+}
