@@ -14,7 +14,6 @@ Requirements
 ------------
 - PHP >= 5.2.0
 - Mage_Core
-- Vianetz_Core
 - [Vianetz_PdfAttachments](https://github.com/vianetz/magento1-pdfattachments)
 
 Compatibility
