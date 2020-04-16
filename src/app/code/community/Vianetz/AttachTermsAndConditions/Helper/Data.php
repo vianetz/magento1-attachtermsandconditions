@@ -29,7 +29,13 @@ class Vianetz_AttachTermsAndConditions_Helper_Data extends Mage_Core_Helper_Abst
      */
     public function log($message, $type = LOG_DEBUG)
     {
-        Mage::helper('vianetz_core/log')->log($message, $type, 'Vianetz_AttachTermsAndConditions');
+        $extensionNamespace = 'Vianetz_AttachTermsAndConditions';
+
+        $extensionVersion = Mage::getConfig()->getModuleConfig($extensionNamespace)->version;
+        $message = $extensionNamespace . ' v' . $extensionVersion . ': ' . $message;
+        $logFilename = $extensionNamespace . '.log';
+
+        Mage::log($message, $type, $logFilename, true);
 
         return $this;
     }
