@@ -104,8 +104,8 @@ class Vianetz_AttachTermsAndConditions_Model_Observer
         $agreements = Mage::getModel('checkout/agreement')->getCollection()
             ->addStoreFilter($this->getStoreId());
 
-        $isFilterActiveAgreements = Mage::getStoreConfigFlag('vianetz_attachtermsandconditions', $this->getStoreId());
-        if ($isFilterActiveAgreements === true) {
+        $isFilterActiveAgreements = Mage::getStoreConfigFlag('vianetz_attachtermsandconditions/general/filter_active_agreements', $this->getStoreId());
+        if ($isFilterActiveAgreements) {
             $agreements->addFieldToFilter('is_active', 1);
         }
 

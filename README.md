@@ -12,8 +12,7 @@ This module for the Magento 1 online shop software offers the possibility to att
 
 Requirements
 ------------
-- PHP >= 5.2.0
-- Mage_Core
+- PHP >= 5.6.0
 - [Vianetz_PdfAttachments](https://github.com/vianetz/magento1-pdfattachments)
 
 Compatibility
@@ -46,12 +45,12 @@ As an alternative you can install the module via modman.
 Please find more information about that installation method at [https://github.com/colinmollenhour/modman](https://github.com/colinmollenhour/modman)
 (Thanks @colinmollenhour)
 
-We also offer paid installation services. If you are interested please contact me at support@vianetz.com.
+We also offer paid installation services. If you are interested please contact me.
 
 Uninstallation
 --------------
-1. Remove the folder app/code/community/Vianetz/AttachTermsAndConditions
-2. Remove the file app/etc/modules/Vianetz_AttachTermsAndConditions.xml
+1. Remove the folder `app/code/community/Vianetz/AttachTermsAndConditions`
+2. Remove the file `app/etc/modules/Vianetz_AttachTermsAndConditions.xml`
 
 Frequently Asked Questions
 --------------------------
@@ -59,8 +58,8 @@ Please find the [Frequently Asked Questions on our website](https://www.vianetz.
 
 Support
 -------
-If you have any issues or suggestions with this extension, please do not hesitate to
-[contact me](https://www.vianetz.com/en/contacts) or [send me an email](mailto:support@vianetz.com).
+If you have any issues or suggestions with this extension, please do not hesitate to 
+[contact me](https://www.vianetz.com/en/contacts).
 
 Developer
 ---------
